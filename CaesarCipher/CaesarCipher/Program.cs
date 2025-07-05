@@ -1,4 +1,19 @@
-﻿Console.Write("Enter your secret message: ");
+﻿using CaesarCipher;
+using TextCopy;
+
+Console.WriteLine("English (0) or Bulgarian (1)?: ");
+int alphabetToggle = int.Parse(Console.ReadLine());
+
+while (alphabetToggle < 0 || alphabetToggle > 1)
+{
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine("Your choose can be only 0 or 1 !");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine("English (0) or Bulgarian (1)?: ");
+    alphabetToggle = int.Parse(Console.ReadLine());
+}
+
+Console.Write("Enter your secret message: ");
 string secret = Console.ReadLine();
 
 while(string.IsNullOrEmpty(secret) || string.IsNullOrWhiteSpace(secret))
@@ -34,8 +49,41 @@ while (toggle < 0 || toggle > 1)
     toggle = int.Parse(Console.ReadLine());
 }
 
-Console.WriteLine(secret);
-Console.WriteLine(key);
+string englishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+string bulgarianAlphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЮЯ";
 
-Console.WriteLine();
+Cipher cipher = new Cipher(secret, key);
 
+switch (alphabetToggle)
+{
+    //English
+    case 0:
+        cipher.Alphabet = englishAlphabet;
+        break;
+    //Bulgarian
+    case 1:
+        cipher.Alphabet = bulgarianAlphabet;
+        break;
+}
+
+string result = string.Empty;
+
+switch (toggle)
+{
+    //Encryption
+    case 0:
+        result = cipher.Encryption();
+        break;
+    //Decryption
+    case 1:
+        Console.WriteLine();
+        break;
+}
+
+
+Console.WriteLine("Operation successful! Here is your result -> ");
+Console.ForegroundColor  = ConsoleColor.Green;
+Console.WriteLine(result);
+ClipboardService.SetText(result);
+Console.ForegroundColor = ConsoleColor.White;
+Console.WriteLine("The result is copied in your clipboard.");
