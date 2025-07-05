@@ -69,10 +69,10 @@ namespace CaesarCipher
                     int calculation = index - _key;
                     if (calculation < 0)
                     {
-                        calculation += 26;
+                        calculation += Alphabet.Length;
 
                     }
-                    char decryptedLetter = Alphabet[calculation % 26];
+                    char decryptedLetter = Alphabet[calculation % Alphabet.Length];
 
                     if (char.IsLower(letterCharacter))
                     {
