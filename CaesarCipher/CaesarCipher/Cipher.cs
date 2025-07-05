@@ -66,8 +66,7 @@ namespace CaesarCipher
                     ////Current index in the alphabet
                     int index = Alphabet.IndexOf(letterCharacterToUpperCase);
 
-                  
-                    var calculation = index - _key;
+                    int calculation = index - _key;
                     if (calculation < 0)
                     {
                         calculation += 26;
