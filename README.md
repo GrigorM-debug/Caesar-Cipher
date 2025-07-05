@@ -14,10 +14,10 @@ This project implements the classic Caesar Cipher encryption algorithm, which sh
 ## Demo
 
 ### Encrypting Text
-![alt text](.\demo-images\encryption.png)
+![alt text](\demo-images\encryption.png)
 
 ### Decrypting Text
-![alt text](.\demo-images\decryption.png)
+![alt text](\demo-images\decryption.png)
 
 
 ## Features
