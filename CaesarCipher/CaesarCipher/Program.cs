@@ -1,6 +1,8 @@
 ﻿using CaesarCipher;
 using TextCopy;
 
+Console.InputEncoding = System.Text.Encoding.Unicode;
+
 Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine(@"  ___ __ _  ___  ___  __ _ _ __        _       _               
  / __/ _` |/ _ \/ __|/ _` | '__|     (_)     | |              
@@ -10,6 +12,10 @@ Console.WriteLine(@"  ___ __ _  ___  ___  __ _ _ __        _       _
                                   \___|_| .__/|_| |_|\___|_|   
                                         | |                    
                                         |_|      ");
+
+Console.WriteLine(@".-------------------.---------------.----------.----------.---------------.
+|E N C R Y P T|===|M E S S A G E S|===|L I K E|===|R O M A N|===|E M P E R O R|™
+'-------------------'---------------'----------'----------'---------------'");
 
 Console.WriteLine();
 
@@ -77,6 +83,7 @@ switch (alphabetToggle)
     //Bulgarian
     case 1:
         cipher.Alphabet = bulgarianAlphabet;
+        Console.OutputEncoding = System.Text.Encoding.Unicode;
         break;
 }
 
@@ -97,7 +104,7 @@ switch (toggle)
 
 Console.WriteLine("Operation successful! Here is your result -> ");
 Console.ForegroundColor  = ConsoleColor.Green;
-Console.WriteLine(result);
+Console.WriteLine($"> {result}");
 ClipboardService.SetText(result);
 Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine("The result is copied in your clipboard.");
