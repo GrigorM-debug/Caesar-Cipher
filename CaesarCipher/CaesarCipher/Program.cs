@@ -1,7 +1,7 @@
 ﻿using CaesarCipher;
 using TextCopy;
 
-Console.WriteLine("English (0) or Bulgarian (1)?: ");
+Console.Write("English (0) or Bulgarian (1)?: ");
 int alphabetToggle = int.Parse(Console.ReadLine());
 
 while (alphabetToggle < 0 || alphabetToggle > 1)
@@ -9,7 +9,7 @@ while (alphabetToggle < 0 || alphabetToggle > 1)
     Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine("Your choose can be only 0 or 1 !");
     Console.ForegroundColor = ConsoleColor.White;
-    Console.WriteLine("English (0) or Bulgarian (1)?: ");
+    Console.Write("English (0) or Bulgarian (1)?: ");
     alphabetToggle = int.Parse(Console.ReadLine());
 }
 
@@ -76,7 +76,7 @@ switch (toggle)
         break;
     //Decryption
     case 1:
-        Console.WriteLine();
+        result = cipher.Decryption();
         break;
 }
 

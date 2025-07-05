@@ -51,7 +51,42 @@ namespace CaesarCipher
 
         public string Decryption()
         {
-            throw new ArgumentException();
+            string decryptedMessage = string.Empty;
+
+            foreach (var letterCharacter in _text)
+            {
+                if (!char.IsLetter(letterCharacter))
+                {
+                    decryptedMessage += letterCharacter;
+                }
+
+                char letterCharacterToUpperCase = char.ToUpper(letterCharacter);
+                if (Alphabet.Contains(letterCharacterToUpperCase))
+                {
+                    ////Current index in the alphabet
+                    int index = Alphabet.IndexOf(letterCharacterToUpperCase);
+
+                  
+                    var calculation = index - _key;
+                    if (calculation < 0)
+                    {
+                        calculation += 26;
+
+                    }
+                    char decryptedLetter = Alphabet[calculation % 26];
+
+                    if (char.IsLower(letterCharacter))
+                    {
+                        decryptedMessage += char.ToLower(decryptedLetter);
+                    }
+                    else
+                    {
+                        decryptedMessage += decryptedLetter;
+                    }
+                }
+            }
+
+            return decryptedMessage;
         }
     }
 }
