@@ -45,7 +45,10 @@ namespace CaesarCipher
                     {
                        encryptedMessage += char.ToLower(encryptedCharacter);
                     }
-                    encryptedMessage += char.ToUpper(encryptedCharacter);
+                    else
+                    {
+                        encryptedMessage += char.ToUpper(encryptedCharacter);
+                    }
                 }
             }
 
@@ -83,7 +86,10 @@ namespace CaesarCipher
                     {
                         encryptedMessage += char.ToLower(encryptedCharacter);
                     }
-                    encryptedMessage += char.ToUpper(encryptedCharacter);
+                    else
+                    {
+                        encryptedMessage += char.ToUpper(encryptedCharacter);
+                    }
                 }
             }
 
