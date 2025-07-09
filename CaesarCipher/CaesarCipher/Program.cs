@@ -72,17 +72,17 @@ while (toggle < 0 || toggle > 1)
 string englishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 string bulgarianAlphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЮЯ";
 
-Cipher cipher = new Cipher(secret, key);
+CaesarCipher.CaesarCipher caesarCipher = new CaesarCipher.CaesarCipher(key.ToString(), secret);
 
 switch (alphabetToggle)
 {
     //English
     case 0:
-        cipher.Alphabet = englishAlphabet;
+        caesarCipher.Alphabet = englishAlphabet;
         break;
     //Bulgarian
     case 1:
-        cipher.Alphabet = bulgarianAlphabet;
+        caesarCipher.Alphabet = bulgarianAlphabet;
         Console.OutputEncoding = System.Text.Encoding.Unicode;
         break;
 }
@@ -93,11 +93,11 @@ switch (toggle)
 {
     //Encryption
     case 0:
-        result = cipher.Encryption();
+        result = caesarCipher.Encryption();
         break;
     //Decryption
     case 1:
-        result = cipher.Decryption();
+        result = caesarCipher.Decryption();
         break;
 }
 
