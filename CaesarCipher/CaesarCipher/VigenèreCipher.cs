@@ -17,17 +17,36 @@ namespace CaesarCipher
         public override string Encryption()
         {
             string encryptedMessage = string.Empty;
-
-            string modifiedKey = KeyManagement(_key, _text);
+            string keyModified = KeyManagement(_key, _text).ToUpper();
 
             for (int i = 0; i < _text.Length; i++)
             {
-                int x = (_text[i] + modifiedKey[i]) % Alphabet.Length;
+                if (!char.IsLetter(_text[i]))
+                {
+                    encryptedMessage += _text[i];
+                }
 
-                x += 'A';
-                char ch = (char)(x);
+                char characterToUpperCase = char.ToUpper(_text[i]);
+                if(Alphabet.Contains(characterToUpperCase))
+                {
+                    int charIndex = Alphabet.IndexOf(characterToUpperCase);
 
-                encryptedMessage += ch;
+                    if (charIndex < 0)
+                    {
+                        charIndex += Alphabet.Length;
+                    }
+
+                    char keyCharacter = keyModified[i % keyModified.Length];
+                    int keyIndex = Alphabet.IndexOf(keyCharacter);
+
+                    char encryptedCharacter = Alphabet[(charIndex + keyIndex) % Alphabet.Length];
+
+                    if (char.IsLower(_text[i]))
+                    {
+                       encryptedMessage += char.ToLower(encryptedCharacter);
+                    }
+                    encryptedMessage += char.ToUpper(encryptedCharacter);
+                }
             }
 
             return encryptedMessage;
@@ -36,16 +55,36 @@ namespace CaesarCipher
         public override string Decryption()
         {
             string encryptedMessage = string.Empty;
-            string modifiedKey = KeyManagement(_key, _text);
+            string keyModified = KeyManagement(_key, _text).ToUpper();
 
             for (int i = 0; i < _text.Length; i++)
             {
-                int x = (_text[i] - modifiedKey[i]) % Alphabet.Length;
+                if (!char.IsLetter(_text[i]))
+                {
+                    encryptedMessage += _text[i];
+                }
 
-                x += 'A';
-                char ch = (char)(x);
+                char characterToUpper = char.ToUpper(_text[i]);
+                if (Alphabet.Contains(characterToUpper)) 
+                {
+                    int charIndex = Alphabet.IndexOf(characterToUpper);
+                    char keyCharacter = keyModified[i % keyModified.Length];
+                    int keyIndex = Alphabet.IndexOf(keyCharacter);
 
-                encryptedMessage += ch;
+                    int encryptedCharacterIndex = (charIndex - keyIndex) % Alphabet.Length;
+                    if (encryptedCharacterIndex < 0)
+                    {
+                        encryptedCharacterIndex += Alphabet.Length;
+                    }
+
+                    char encryptedCharacter = Alphabet[encryptedCharacterIndex];
+
+                    if (char.IsLower(_text[i]))
+                    {
+                        encryptedMessage += char.ToLower(encryptedCharacter);
+                    }
+                    encryptedMessage += char.ToUpper(encryptedCharacter);
+                }
             }
 
             return encryptedMessage;
